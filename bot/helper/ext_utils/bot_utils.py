@@ -48,7 +48,7 @@ class EngineStatus:
     STATUS_YT = "YT-dlp"
     STATUS_EXT = "Extract | pExtract"
     STATUS_SPLIT = "FFmpeg"
-    STATUS_ZIP = "p7zip"
+    STATUS_ZIP = "7zip"
 
 PROGRESS_MAX_SIZE = 100 // 10
 PROGRESS_INCOMPLETE = ['▱', '▱', '▱', '▱', '▱', '▱', '▱']
