@@ -160,8 +160,7 @@ def get_readable_message():
                     msg += f"\n<b>Uploaded :</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 else:
                     msg += f"\n<b>Downloaded:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>Speed :</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
-                msg += f"\n<b>Time Elapsed : </b>{get_readable_time(time() - download.message.date.timestamp())}"
+                msg += f"\n<b>Speed :</b> {download.speed()} | <b>ETA : </b>{get_readable_time(time() - download.message.date.timestamp())}"
                 msg += f"\n<b>Engine :</b> {download.eng()}"
                 try:
                     msg += f"\n<b>Seeders:</b> {download.aria_download().num_seeders}" \
