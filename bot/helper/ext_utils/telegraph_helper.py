@@ -78,4 +78,4 @@ class TelegraphHelper:
         return
 
 
-telegraph=TelegraphHelper('Z-Mirror-Bot', 'https://github.com/shuvam-dawn/MLTB-Custom-UI')
+telegraph=TelegraphHelper('Mirror-Bot', 'https://github.com/shuvam-dawn/MLTB-Custom-UI')
