@@ -155,14 +155,13 @@ def get_readable_message():
             ]:
                 msg += f"\n{get_progress_bar_string(download)}\n<b>Progress:</b> {download.progress()}"
                 if download.status() == MirrorStatus.STATUS_CLONING:
-                    msg += f"\n<b>Cloned:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
+                    msg += f"\n<b>Cloned :</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 elif download.status() == MirrorStatus.STATUS_UPLOADING:
-                    msg += f"\n<b>Uploaded:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
+                    msg += f"\n<b>Uploaded :</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 else:
                     msg += f"\n<b>Downloaded:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>Speed:</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
-                msg += f"\n<b>Time Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
-                msg += f'\n<b>Req By :</b> <a href="https://t.me/c/{str(download.message.chat.id)[4:]}/{download.message.message_id}">{download.message.from_user.first_name}</a>'
+                msg += f"\n<b>Speed :</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
+                msg += f"\n<b>Time Elapsed : </b>{get_readable_time(time() - download.message.date.timestamp())}"
                 msg += f"\n<b>Engine :</b> {download.eng()}"
                 try:
                     msg += f"\n<b>Seeders:</b> {download.aria_download().num_seeders}" \
@@ -174,6 +173,14 @@ def get_readable_message():
                            f" | <b>Leechers:</b> {download.torrent_info().num_leechs}"
                 except:
                     pass
+                if download.message.chat.type != 'private':
+                    try:
+                        chatid = str(download.message.chat.id)[4:]
+                        msg += f'\n<b>Source: </b><a href="https://t.me/c/{chatid}/{download.message.message_id}">{download.message.from_user.first_name}</a> | <b>Id :</b> <code>{download.message.from_user.id}</code>'
+                    except:
+                        pass
+                else:
+                    msg += f'\n<b>User:</b> ️<code>{download.message.from_user.first_name}</code> | <b>Id:</b> <code>{download.message.from_user.id}</code>'
                 msg += f"\n<b>To Cancel:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
                 
             elif download.status() == MirrorStatus.STATUS_SEEDING:
